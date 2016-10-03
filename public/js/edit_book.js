@@ -51,7 +51,13 @@
 
       const options = {
         contentType: 'application/json',
-        data: JSON.stringify({ title, author, genre, description, coverUrl }),
+        data: JSON.stringify({
+          title,
+          author,
+          genre,
+          description,
+          coverUrl
+        }),
         dataType: 'json',
         type: 'PATCH',
         url: `/books/${book.id}`

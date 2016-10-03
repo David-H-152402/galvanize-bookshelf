@@ -4,6 +4,7 @@
   "description": "Create a web application to manage your book collection",
   "main": "server.js",
   "scripts": {
+    "heroku-postbuild": "knex migrate:latest",
     "knex": "knex",
     "lint": "eslint  --ignore-pattern public/js/vendor",
     "nf": "nf start",
@@ -14,7 +15,7 @@
     "type": "git",
     "url": ""
   },
-  "author": "",
+  "author": "David Hernandez <David.hernandez0118@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": ""
@@ -43,6 +44,6 @@
     "supertest": "^1.2.0"
   },
   "engines": {
-    "node": ""
+    "node": "6.3.1"
   }
 }
