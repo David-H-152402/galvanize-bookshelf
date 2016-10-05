@@ -14,7 +14,7 @@ const {
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-router.post('/users', (req, res, next) => {
+router.post('/', (req, res, next) => {
   const {
     email,
     password
@@ -31,6 +31,7 @@ router.post('/users', (req, res, next) => {
     ));
   }
 
+  console.log("testing")
   knex('users')
     .select(knex.raw('1=1'))
     .where('email', email)
@@ -74,7 +75,7 @@ router.post('/users', (req, res, next) => {
         expires: expiry,
         secure: router.get('env') === 'production'
       });
-
+//========
       res.send(user);
     })
     .catch((err) => {
