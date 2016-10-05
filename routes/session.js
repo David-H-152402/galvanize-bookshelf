@@ -11,7 +11,7 @@ const { camelizeKeys } = require('humps');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-router.get('/token', (req, res) => {
+router.get('/', (req, res) => {
   const accessToken = req.cookies.accessToken;
 
   jwt.verify(accessToken, process.env.JWT_SECRET, (err, decoded) => {
@@ -23,7 +23,7 @@ router.get('/token', (req, res) => {
   });
 });
 
-router.post('/token', (req, res, next) => {
+router.post('/', (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !email.trim()) {
@@ -51,9 +51,9 @@ router.post('/token', (req, res, next) => {
     .then(() => {
       delete user.hashedPassword;
 
-      const expiry = new Date(Date.now() + 1000 * 60 * 60 * 3); // 3 hours
+      const expiry = new Date(Date.now() + 1000 * 60 * 60 * 2);
       const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-        expiresIn: '3h'
+        expiresIn: '2h'
       });
 
       res.cookie('accessToken', token, {
@@ -72,7 +72,7 @@ router.post('/token', (req, res, next) => {
     });
 });
 
-router.delete('/token', (req, res) => {
+router.delete('/:id', (req, res) => {
   res.clearCookie('accessToken');
   res.send(true);
 });
